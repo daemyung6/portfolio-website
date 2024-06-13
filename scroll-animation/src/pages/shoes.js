@@ -71,7 +71,9 @@ pmremGenerator.compileEquirectangularShader();
 let shoesObj;
 let isLoaded = false;
 const loader = new GLTFLoader();
-loader.load( './assets/glb/shoes4.glb?ver=1.0.0', 
+const host = require('../index').host
+const cache = require('../index').cache
+loader.load( `${host}/scroll-animation/assets/glb/shoes4.glb${cache}`, 
     function ( item ) {
         shoesObj = item.scene
         window.test = shoesObj
@@ -142,18 +144,20 @@ observeList.push({
     onOut: (e) => {
         
         if (window.scrollY < shoesPageDiv.offsetTop) {
-            console.log(234)
-            shoesObj.scale.x = 0
-            shoesObj.scale.y = 0
-            shoesObj.scale.z = 0
-
-            shoesObj.position.x = 0.04
-            shoesObj.position.y = -0.1
-            shoesObj.position.z = -1.5
-
-            shoesObj.rotation.x = 0
-            shoesObj.rotation.y = 0
-            shoesObj.rotation.z = 0
+            if(isLoaded) {
+                shoesObj.scale.x = 0
+                shoesObj.scale.y = 0
+                shoesObj.scale.z = 0
+    
+                shoesObj.position.x = 0.04
+                shoesObj.position.y = -0.1
+                shoesObj.position.z = -1.5
+    
+                shoesObj.rotation.x = 0
+                shoesObj.rotation.y = 0
+                shoesObj.rotation.z = 0
+            }
+            
     
             for (let i = 0; i < eventList.length; i++) {
                 clearTimeout(eventList[i])

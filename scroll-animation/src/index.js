@@ -1,3 +1,6 @@
+module.exports.host = 'https://raw.githubusercontent.com/daemyung6/portfolio-website/main/'
+module.exports.cache = '?ver=1.0.1'
+
 window.addEventListener('DOMContentLoaded', () => {
     /**
      * @type {[{
@@ -15,7 +18,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (observeList[j].element === entry[i].target) {
                     if (entry[i].isIntersecting) {
                         setTimeout(() => {
-                            console.log(entry[i].target)
                             observeList[j].onView(entry[i].target)
                         }, 100);
                     }
